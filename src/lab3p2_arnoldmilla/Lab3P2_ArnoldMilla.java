@@ -7,6 +7,7 @@ public class Lab3P2_ArnoldMilla {
     public static void main(String[] args) {
         String nats [] = {"timido","energetico","misterioso"};
         ArrayList <Pokemon> pokes = new ArrayList();
+        ArrayList <Pokebola> pokebolas = new ArrayList();
         Scanner sc = new Scanner(System.in);
         Scanner scS = new Scanner(System.in);
         System.out.println("-------Menu------- \n"
@@ -21,6 +22,7 @@ public class Lab3P2_ArnoldMilla {
         while (opc != 7){
             switch (opc){
                 case 1:{//Opcion para crear un pokemon
+                    System.out.println("Creando pokemon");
                     System.out.println("Ingrese nombre del pokemon");
                     String name = scS.nextLine();
                     System.out.println("Ingrese la naturaleza del pokemon");
@@ -87,12 +89,19 @@ public class Lab3P2_ArnoldMilla {
                     }
                 }break;
                 
-                case 2:{
-                
+                case 2:{//////crear una pokebola
+                    System.out.println("Creando pokebola");
+                    System.out.println("Ingrese el color de la pokebola");
+                    String color = scS.nextLine();
+                    System.out.println("Ingrese el numero de serie de la pokebola");
+                    int serie = sc.nextInt();
+                    System.out.println("Ingrese la eficiencia de la pokebola con un numero del 1 al 3");
+                    int efficiencia = sc.nextInt();
+                    pokebolas.add(new Pokebola(color, serie, efficiencia));
                 }break;
                 
                 case 3:{
-                
+                    
                 }break;
                 
                 case 4:{
