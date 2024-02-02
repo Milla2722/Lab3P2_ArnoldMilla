@@ -23,7 +23,7 @@ public class fire_Type extends Pokemon{
 
     @Override
     public String toString() {
-        return super.toString() + " Tipo fuego " + "llamas con potencia: " + potencia;
+        return super.toString() + " Tipo fuego " + " con llamas con potencia: " + potencia;
     }
     
     

@@ -22,24 +22,28 @@ public class Lab3P2_ArnoldMilla {
         while (opc != 7){
             switch (opc){
                 case 1:{//Opcion para crear un pokemon
-                    System.out.println("Creando pokemon");
+                    System.out.println("Crear pokemon");
                     System.out.println("Ingrese nombre del pokemon");
                     String name = scS.nextLine();
                     System.out.println("Ingrese la naturaleza del pokemon");////Sin tildes :)
                     String nat = scS.nextLine();
                     boolean retirar = false;
-                    while (retirar != true){
+                    while (retirar == false){
                         for (int cont = 0; cont < nats.length; cont++) {
-                            if(nats[cont].equalsIgnoreCase(nat)){
+                            if(nat.equalsIgnoreCase(nats[cont])){
                                 retirar = true;
+                                break;
                             }
                             else{
-                                retirar = false;
+                                retirar = false;                               
+                            }
+                            
                         }
-                        System.out.println("Naturaleza no valida");
-                        System.out.println("Ingrese la naturaleza del pokemon");
-                        nat = scS.nextLine();
-                    }
+                        if(retirar == false){
+                                System.out.println("Naturaleza no valida");
+                                System.out.println("Ingrese la naturaleza del pokemon");
+                                nat = scS.nextLine();                    
+                        }
                     }
                     
                     System.out.println("Ingrese el id del pokemon");
@@ -49,7 +53,7 @@ public class Lab3P2_ArnoldMilla {
                             + "2. grama \n"
                             + "3. agua");
                     int opc2 = sc.nextInt();
-                    while (opc2 != 1 || opc2 != 2 || opc2 != 3){
+                    while (opc2 != 1 && opc2 != 2 && opc2 != 3){
                         System.out.println("Tipo no valido ingrese otron tipo");
                         System.out.println("¿De que tipo es el pokemon? \n"
                             + "1. fuego \n"
@@ -90,7 +94,7 @@ public class Lab3P2_ArnoldMilla {
                 }break;
                 
                 case 2:{//////crear una pokebola
-                    System.out.println("Creando pokebola");
+                    System.out.println("Crear pokebola");
                     System.out.println("Ingrese el color de la pokebola");
                     String color = scS.nextLine();
                     System.out.println("Ingrese el numero de serie de la pokebola");
@@ -101,6 +105,7 @@ public class Lab3P2_ArnoldMilla {
                 }break;
                 
                 case 3:{///////listar pokes dependiendo del tipo
+                    System.out.println("Lista de pokemons");
                     for (int cont = 0; cont < pokes.size(); cont++) {
                         if(pokes.get(cont) instanceof fire_Type){
                             System.out.println(cont + " - " + pokes.get(cont));
@@ -120,8 +125,67 @@ public class Lab3P2_ArnoldMilla {
                     }
                 }break;
                 
-                case 4:{
-                
+                case 4:{//Eliminar pokemon
+                    System.out.println("Ingrese el tipo de pokemon que quiera eliminar \n"
+                            + "1. Fuego\n"
+                            + "2. Grama\n"
+                            + "3. Agua");
+                    int opc3 = sc.nextInt();
+                    switch(opc3){
+                        case 1:{////eliminar tipo fuego
+                            for (int cont = 0; cont < pokes.size(); cont++) {
+                                if(pokes.get(cont) instanceof fire_Type){
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                }
+                            }
+                            System.out.println("Ingrese la posicion del pokemon que quiere eliminar");
+                            int pos = sc.nextInt();
+                            
+                            if(pokes.get(pos)instanceof fire_Type){
+                                pokes.remove(pos);
+                                System.out.println("Pokemon eliminado");
+                            }
+                            else{
+                                System.out.println("Posicion no valida");
+                            }
+                        }break; 
+                        
+                        case 2:{/////eliminar tipo grama
+                            for (int cont = 0; cont < pokes.size(); cont++) {
+                                if(pokes.get(cont) instanceof grass_Type){
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                }
+                            }
+                            System.out.println("Ingrese la posicion del pokemon que quiere eliminar");
+                            int pos = sc.nextInt();
+                            
+                            if(pokes.get(pos)instanceof grass_Type){
+                                pokes.remove(pos);
+                                System.out.println("Pokemon eliminado");
+                            }
+                            else{
+                                System.out.println("Posicion no valida");
+                            }
+                        }break;
+                        
+                        case 3:{/////eliminar tipo agua
+                            for (int cont = 0; cont < pokes.size(); cont++) {
+                                if(pokes.get(cont) instanceof water_Type){
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                }
+                            }
+                            System.out.println("Ingrese la posicion del pokemon que quiere eliminar");
+                            int pos = sc.nextInt();
+                            
+                            if(pokes.get(pos)instanceof water_Type){
+                                pokes.remove(pos);
+                                System.out.println("Pokemon eliminado");
+                            }
+                            else{
+                                System.out.println("Posicion no valida");
+                            }
+                        }
+                    }///fin opc3 switch
                 }break;
                 
                 case 5:{
