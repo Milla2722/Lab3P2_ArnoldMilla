@@ -32,7 +32,7 @@ public class grass_Type extends Pokemon{
 
     @Override
     public String toString() {
-        return super.toString() + " Tipo grama" + " vive en: " + habitat + " su dominio de grama es de: " + dom;
+        return super.toString() + " Tipo agua " + " vive en: " + habitat + " su dominio de grama es de: " + dom;
     }
       
       

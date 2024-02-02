@@ -141,7 +141,7 @@ public class Lab3P2_ArnoldMilla {
                             System.out.println("Ingrese la posicion del pokemon que quiere eliminar");
                             int pos = sc.nextInt();
                             
-                            if(pokes.get(pos)instanceof fire_Type){
+                            if(pokes.get(pos)instanceof fire_Type || pos < pokes.size() || pos >= 0){
                                 pokes.remove(pos);
                                 System.out.println("Pokemon eliminado");
                             }
@@ -159,7 +159,7 @@ public class Lab3P2_ArnoldMilla {
                             System.out.println("Ingrese la posicion del pokemon que quiere eliminar");
                             int pos = sc.nextInt();
                             
-                            if(pokes.get(pos)instanceof grass_Type){
+                            if(pokes.get(pos)instanceof grass_Type || pos < pokes.size() || pos >= 0){
                                 pokes.remove(pos);
                                 System.out.println("Pokemon eliminado");
                             }
@@ -177,7 +177,7 @@ public class Lab3P2_ArnoldMilla {
                             System.out.println("Ingrese la posicion del pokemon que quiere eliminar");
                             int pos = sc.nextInt();
                             
-                            if(pokes.get(pos)instanceof water_Type){
+                            if(pokes.get(pos)instanceof water_Type || pos < pokes.size() || pos >= 0){
                                 pokes.remove(pos);
                                 System.out.println("Pokemon eliminado");
                             }
@@ -188,15 +188,153 @@ public class Lab3P2_ArnoldMilla {
                     }///fin opc3 switch
                 }break;
                 
-                case 5:{
+                case 5:{////capturar
                 
-                }break;
+                }break;////fin emulacion capturar
                 
-                case 6:{
-                
-                }break;
-            }///fin switch de la opcion
-            System.out.println("-------Menu------- \n"
+                case 6:{/////Modificar pokemon
+                    System.out.println("Modificar pokemon");
+                    
+                    System.out.println("Ingrese el tipo de pokemon que quiera eliminar \n"
+                            + "1. Fuego\n"
+                            + "2. Grama\n"
+                            + "3. Agua");
+                    int opc3 = sc.nextInt();
+                    switch(opc3){
+                        case 1:{////modificar tipo fuego
+                            for (int cont = 0; cont < pokes.size(); cont++) {
+                                if(pokes.get(cont) instanceof fire_Type){
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                }
+                            }
+                            System.out.println("Elija la posicion del pokemon a modificar");
+                            int pos = sc.nextInt();
+                            
+                            System.out.println("Elija opcion a modificar \n"
+                                    + "1. Nombre\n"
+                                    + "2. Numero de pokedex\n"
+                                    + "3. Potencia de llamas");
+                            int modif = sc.nextInt();
+                            
+                            if(pokes.get(pos)instanceof fire_Type && pos < pokes.size() && pos >= 0){                               
+                                if(modif == 1){////cambiar nombre tipo fuego
+                                    System.out.println("Ingrese nuevo nombre");
+                                    String newname = scS.nextLine();
+                                    pokes.get(pos).setNombre(newname);
+                                }
+                                else if(modif == 2){/////cambiar id de tipo fuego
+                                    System.out.println("Ingrese el nuevo id");
+                                    int newid = sc.nextInt();
+                                    pokes.get(pos).setId(newid);
+                                }
+                                else if(modif == 3){/////cambiar potencia de fuego
+                                    System.out.println("Ingrese la nueva potencia de llamas");
+                                    int newpot = sc.nextInt();
+                                    fire_Type nuevotipo = (fire_Type) pokes.get(pos);
+                                    nuevotipo.setPotencia(newpot);
+                                    pokes.set(pos, nuevotipo);
+                                }
+                                else{
+                                
+                                }
+                            }
+                            else{
+                                System.out.println("Posicion no valida");
+                            }
+                        }break; 
+                        
+                        case 2:{/////modificar tipo grama
+                            for (int cont = 0; cont < pokes.size(); cont++) {
+                                if(pokes.get(cont) instanceof grass_Type){
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                }
+                            }
+                            System.out.println("Elija la posicion del pokemon a modificar");
+                            int pos = sc.nextInt();
+                            
+                            System.out.println("Elija opcion a modificar \n"
+                                    + "1. Nombre\n"
+                                    + "2. Numero de pokedex\n"
+                                    + "3. Habitat");
+                            int modif = sc.nextInt();
+                            
+                            if(pokes.get(pos)instanceof grass_Type && pos < pokes.size() && pos >= 0){                               
+                                if(modif == 1){////cambiar nombre tipo grama
+                                    System.out.println("Ingrese nuevo nombre");
+                                    String newname = scS.nextLine();
+                                    pokes.get(pos).setNombre(newname);
+                                }
+                                else if(modif == 2){/////cambiar id de tipo grama
+                                    System.out.println("Ingrese el nuevo id");
+                                    int newid = sc.nextInt();
+                                    pokes.get(pos).setId(newid);
+                                }
+                                else if(modif == 3){/////cambiar habitat
+                                    System.out.println("Ingrese el nuevo habitat");
+                                    String newH = scS.nextLine();
+                                    grass_Type nuevotipo = (grass_Type) pokes.get(pos);
+                                    nuevotipo.setHabitat(newH);
+                                    pokes.set(pos, nuevotipo);
+                                }
+                                else{
+                                
+                                }
+                            }
+                            else{
+                                System.out.println("Posicion no valida");
+                            }
+                        }break;
+                        
+                        case 3:{/////modificar tipo agua
+                            for (int cont = 0; cont < pokes.size(); cont++) {
+                                if(pokes.get(cont) instanceof water_Type){
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                }
+                            }
+                            System.out.println("Elija la posicion del pokemon a modificar");
+                            int pos = sc.nextInt();
+                            
+                            System.out.println("Elija opcion a modificar \n"
+                                    + "1. Nombre\n"
+                                    + "2. Numero de pokedex\n"
+                                    + "3. Puede vivir fuera del agua");
+                            int modif = sc.nextInt();
+                            
+                            if(pokes.get(pos)instanceof water_Type && pos < pokes.size() && pos >= 0){                               
+                                if(modif == 1){////cambiar nombre tipo agua
+                                    System.out.println("Ingrese nuevo nombre");
+                                    String newname = scS.nextLine();
+                                    pokes.get(pos).setNombre(newname);
+                                }
+                                else if(modif == 2){/////cambiar id de tipo grama
+                                    System.out.println("Ingrese el nuevo id");
+                                    int newid = sc.nextInt();
+                                    pokes.get(pos).setId(newid);
+                                }
+                                else if(modif == 3){/////cambiar habitat
+                                    System.out.println("¿Puede el pokemon vivir fuera del agua? s/n");
+                                    char newV = scS.next().charAt(0);
+                                    boolean verif = false;
+                                    if (newV == 's' || newV == 'S'){
+                                        verif = true;
+                                    }
+                                    water_Type nuevotipo = (water_Type) pokes.get(pos);
+                                    nuevotipo.setVivir(verif);
+                                    pokes.set(pos, nuevotipo);
+                                }
+                                else{
+                                
+                                }
+                            }
+                            else{
+                                System.out.println("Posicion no valida");
+                            }
+                        }break;
+                }
+            }break;///fin switch de la opcion
+            
+        }///fin while de menu para salir
+                System.out.println("-------Menu------- \n"
                 + "1. Crear Pokemon \n"
                 + "2. Crear Pokebola \n"
                 + "3. Listar Pokemon \n"
@@ -204,8 +342,7 @@ public class Lab3P2_ArnoldMilla {
                 + "5. Capturar Pokemon \n"
                 + "6. Modificar Pokemon \n"
                 + "7. Salir");
-            opc = sc.nextInt();
-        }///fin while de menu para salir
+                opc = sc.nextInt();
     }
-    
+    } 
 }
