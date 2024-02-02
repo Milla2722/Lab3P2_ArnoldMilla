@@ -8,6 +8,7 @@ public class Lab3P2_ArnoldMilla {
         String nats [] = {"timido","energetico","misterioso"};
         ArrayList <Pokemon> pokes = new ArrayList();
         ArrayList <Pokebola> pokebolas = new ArrayList();
+        Random rand = new Random();
         Scanner sc = new Scanner(System.in);
         Scanner scS = new Scanner(System.in);
         System.out.println("-------Menu------- \n"
@@ -101,7 +102,13 @@ public class Lab3P2_ArnoldMilla {
                     int serie = sc.nextInt();
                     System.out.println("Ingrese la eficiencia de la pokebola con un numero del 1 al 3");
                     int efficiencia = sc.nextInt();
-                    pokebolas.add(new Pokebola(color, serie, efficiencia));
+                    if(efficiencia <= 3 || efficiencia > 0){
+                        pokebolas.add(new Pokebola(color, serie, efficiencia));
+                    }
+                    else{
+                        System.out.println("Pokebola no agregada cantidad efficiencia no valida");
+                    }
+                    
                 }break;
                 
                 case 3:{///////listar pokes dependiendo del tipo
@@ -189,7 +196,65 @@ public class Lab3P2_ArnoldMilla {
                 }break;
                 
                 case 5:{////capturar
-                
+                    if (pokebolas.size() == 0){
+                        System.out.println("No tiene pokebolas");
+                        break;
+                    }
+                    for (int cont = 0; cont < pokebolas.size(); cont++) {
+                        System.out.println(cont + " - " + pokebolas.get(cont));
+                    }
+                    System.out.println("Elija una pokebola");
+                    int ball = sc.nextInt();                 
+                    if(ball < 0 || ball >= pokebolas.size()){
+                        System.out.println("Bola no valida");
+                    }
+                    Pokebola bola = pokebolas.get(ball);
+                    int randP = rand.nextInt(0,pokes.size());
+                    Pokemon capP = pokes.get(randP);
+                    System.out.println("EL POKEMON " + capP.getNombre() + " HA APARECIDO");
+                    System.out.println("Desea utilizar [1]pokebola o [2]escapar");
+                    int accion = sc.nextInt();
+                    int probab = rand.nextInt(1,4);
+                    if (accion == 1){
+                        int capt = rand.nextInt();
+                        switch (bola.getEfficiencia()){//////eficiencia de la pokebola
+                            case 1:{
+                                if(probab == 1){
+                                    System.out.println("Pokemon ha sido atrapado");
+                                    capP.setAtrapado(true);
+                                    capP.setPokebola(bola);
+                                }
+                                else {
+                                    System.out.println("Pokemon ha escapado");
+                                }
+                            }break;
+                            
+                            case 2:{
+                                if(probab >= 1 && probab < 3){
+                                    System.out.println("Pokemon ha sido atrapado");
+                                    capP.setAtrapado(true);
+                                    capP.setPokebola(bola);
+                                }
+                                else{
+                                    System.out.println("Pokemon ha escapado");
+                                }
+                            }break;
+                            
+                            case 3:{
+                                System.out.println("Pokemon ha sido atrapado");
+                                capP.setAtrapado(true);
+                                capP.setPokebola(bola);
+                            }break;
+                        }//////////fin eficiencia de la bola
+                        pokebolas.remove(ball);
+                    }
+                    else if(accion == 2){
+                        System.out.println("Escapaste");
+                        return;
+                    }
+                    else{
+                        System.out.println("Opcion no valida");
+                    }
                 }break;////fin emulacion capturar
                 
                 case 6:{/////Modificar pokemon
@@ -204,7 +269,7 @@ public class Lab3P2_ArnoldMilla {
                         case 1:{////modificar tipo fuego
                             for (int cont = 0; cont < pokes.size(); cont++) {
                                 if(pokes.get(cont) instanceof fire_Type){
-                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  " - " + pokes.get(cont));
                                 }
                             }
                             System.out.println("Elija la posicion del pokemon a modificar");
@@ -216,7 +281,7 @@ public class Lab3P2_ArnoldMilla {
                                     + "3. Potencia de llamas");
                             int modif = sc.nextInt();
                             
-                            if(pokes.get(pos)instanceof fire_Type && pos < pokes.size() && pos >= 0){                               
+                            if(pokes.get(pos)instanceof fire_Type && pos < pokes.size() && pos >= 0 && pokes.get(pos).isAtrapado() == true){                               
                                 if(modif == 1){////cambiar nombre tipo fuego
                                     System.out.println("Ingrese nuevo nombre");
                                     String newname = scS.nextLine();
@@ -239,14 +304,14 @@ public class Lab3P2_ArnoldMilla {
                                 }
                             }
                             else{
-                                System.out.println("Posicion no valida");
+                                System.out.println("Posicion no valida o pokemon no capturado");
                             }
                         }break; 
                         
                         case 2:{/////modificar tipo grama
                             for (int cont = 0; cont < pokes.size(); cont++) {
                                 if(pokes.get(cont) instanceof grass_Type){
-                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  " - " + pokes.get(cont));
                                 }
                             }
                             System.out.println("Elija la posicion del pokemon a modificar");
@@ -258,7 +323,7 @@ public class Lab3P2_ArnoldMilla {
                                     + "3. Habitat");
                             int modif = sc.nextInt();
                             
-                            if(pokes.get(pos)instanceof grass_Type && pos < pokes.size() && pos >= 0){                               
+                            if(pokes.get(pos)instanceof grass_Type && pos < pokes.size() && pos >= 0 && pokes.get(pos).isAtrapado() == true){                               
                                 if(modif == 1){////cambiar nombre tipo grama
                                     System.out.println("Ingrese nuevo nombre");
                                     String newname = scS.nextLine();
@@ -281,14 +346,14 @@ public class Lab3P2_ArnoldMilla {
                                 }
                             }
                             else{
-                                System.out.println("Posicion no valida");
+                                System.out.println("Posicion no valida o pokemon no capturado");
                             }
                         }break;
                         
                         case 3:{/////modificar tipo agua
                             for (int cont = 0; cont < pokes.size(); cont++) {
                                 if(pokes.get(cont) instanceof water_Type){
-                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  "-" + pokes.get(cont));
+                                    System.out.println(pokes.indexOf(pokes.get(cont)) +  " - " + pokes.get(cont).getNombre());
                                 }
                             }
                             System.out.println("Elija la posicion del pokemon a modificar");
@@ -300,7 +365,7 @@ public class Lab3P2_ArnoldMilla {
                                     + "3. Puede vivir fuera del agua");
                             int modif = sc.nextInt();
                             
-                            if(pokes.get(pos)instanceof water_Type && pos < pokes.size() && pos >= 0){                               
+                            if(pokes.get(pos)instanceof water_Type && pos < pokes.size() && pos >= 0 && pokes.get(pos).isAtrapado() == true){                               
                                 if(modif == 1){////cambiar nombre tipo agua
                                     System.out.println("Ingrese nuevo nombre");
                                     String newname = scS.nextLine();
@@ -327,7 +392,7 @@ public class Lab3P2_ArnoldMilla {
                                 }
                             }
                             else{
-                                System.out.println("Posicion no valida");
+                                System.out.println("Posicion no valida o pokemon no capturado");
                             }
                         }break;
                 }
