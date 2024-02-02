@@ -25,12 +25,12 @@ public class Lab3P2_ArnoldMilla {
                     System.out.println("Creando pokemon");
                     System.out.println("Ingrese nombre del pokemon");
                     String name = scS.nextLine();
-                    System.out.println("Ingrese la naturaleza del pokemon");
+                    System.out.println("Ingrese la naturaleza del pokemon");////Sin tildes :)
                     String nat = scS.nextLine();
                     boolean retirar = false;
                     while (retirar != true){
                         for (int cont = 0; cont < nats.length; cont++) {
-                            if(nats[cont].equals(nat)){
+                            if(nats[cont].equalsIgnoreCase(nat)){
                                 retirar = true;
                             }
                             else{
@@ -100,8 +100,24 @@ public class Lab3P2_ArnoldMilla {
                     pokebolas.add(new Pokebola(color, serie, efficiencia));
                 }break;
                 
-                case 3:{
+                case 3:{///////listar pokes dependiendo del tipo
+                    for (int cont = 0; cont < pokes.size(); cont++) {
+                        if(pokes.get(cont) instanceof fire_Type){
+                            System.out.println(cont + " - " + pokes.get(cont));
+                        }
+                    }
                     
+                    for (int cont = 0; cont < pokes.size(); cont++) {
+                        if(pokes.get(cont) instanceof water_Type){
+                            System.out.println(cont + " - " + pokes.get(cont));
+                        }
+                    }
+                    
+                    for (int cont = 0; cont < pokes.size(); cont++) {
+                        if(pokes.get(cont) instanceof grass_Type){
+                            System.out.println(cont + " - " + pokes.get(cont));
+                        }
+                    }
                 }break;
                 
                 case 4:{
