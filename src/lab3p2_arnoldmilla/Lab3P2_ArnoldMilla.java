@@ -5,6 +5,7 @@ public class Lab3P2_ArnoldMilla {
 
     
     public static void main(String[] args) {
+        String nats [] = {"timido","energetico","misterioso"};
         ArrayList <Pokemon> pokes = new ArrayList();
         Scanner sc = new Scanner(System.in);
         Scanner scS = new Scanner(System.in);
@@ -24,6 +25,21 @@ public class Lab3P2_ArnoldMilla {
                     String name = scS.nextLine();
                     System.out.println("Ingrese la naturaleza del pokemon");
                     String nat = scS.nextLine();
+                    boolean retirar = false;
+                    while (retirar != true){
+                        for (int cont = 0; cont < nats.length; cont++) {
+                            if(nats[cont].equals(nat)){
+                                retirar = true;
+                            }
+                            else{
+                                retirar = false;
+                        }
+                        System.out.println("Naturaleza no valida");
+                        System.out.println("Ingrese la naturaleza del pokemon");
+                        nat = scS.nextLine();
+                    }
+                    }
+                    
                     System.out.println("Ingrese el id del pokemon");
                     int id = sc.nextInt();
                     System.out.println("¿De que tipo es el pokemon? \n"
@@ -31,6 +47,14 @@ public class Lab3P2_ArnoldMilla {
                             + "2. grama \n"
                             + "3. agua");
                     int opc2 = sc.nextInt();
+                    while (opc2 != 1 || opc2 != 2 || opc2 != 3){
+                        System.out.println("Tipo no valido ingrese otron tipo");
+                        System.out.println("¿De que tipo es el pokemon? \n"
+                            + "1. fuego \n"
+                            + "2. grama \n"
+                            + "3. agua");
+                        opc2 = sc.nextInt();
+                    }
                     switch (opc2){
                         case 1:{///fuego
                             System.out.println("Ingrese la potencia de las llamas");
